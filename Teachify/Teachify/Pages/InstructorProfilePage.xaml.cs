@@ -26,17 +26,14 @@ namespace Teachify.Pages
             ApiService apiService = new ApiService();
             var instructor = await apiService.GetInstructor(id);
             //ImgProfile.Source = instructor.FullLogoPath;
-            LblCity.Text = instructor.Name;
-            LblLanguage.Text = instructor.LastName;
-            LblNationality.Text = instructor.Email;
-            LblExperience.Text = instructor.Email;
-            LblSpecialization.Text = instructor.Email;
             LblName.Text = instructor.Name;
-            LblOneLineDescription.Text = instructor.Tarifa;
-            LblHourlyRate.Text = instructor.Tarifa;
+            LblLastName.Text = instructor.LastName;
+            LblUserName.Text = instructor.UserName;
+            LblEmail.Text = instructor.Email;
+            LblRate.Text = instructor.Importe.ToString();
+            LblTarifa.Text = instructor.Tarifa;
             LblDescription.Text = instructor.Phone;
-            number = instructor.Phone;
-            email = instructor.Email;
+            LblPhone.Text = instructor.Phone;
         }
 
         private void BtnCall_OnClicked(object sender, EventArgs e)

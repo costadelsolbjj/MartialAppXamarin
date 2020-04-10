@@ -61,16 +61,15 @@ namespace Teachify.Pages
             var instructor = new Trainers()
             {
                 Name = EntName.Text,
-                UserName = EntLanguage.Text,
-                LastName = EntNationality.Text,
+                UserName = EntUserName.Text,
+                LastName = EntLastName.Text,
                 //Gender = PickerGender.Items[PickerGender.SelectedIndex],
                 Phone = EntPhone.Text,
-                Email = EntEmail.Text
-                //,
-                //Education = EntEducation.Text,
-                //Experience = PickerExperience.Items[PickerExperience.SelectedIndex],
-                //HourlyRate = PickerHourlyRate.Items[PickerHourlyRate.SelectedIndex],
-                //CourseDomain = PickerCourseDomain.Items[PickerCourseDomain.SelectedIndex],
+                Email = EntEmail.Text,
+                SchoolId = 1,//EntAcademy.Text,
+                BeltId = 1,//PickerBelt.Items[PickerBelt.SelectedIndex],
+                Importe = Convert.ToDouble(PickerRate.Items[PickerRate.SelectedIndex]),
+                Tarifa = PickerTarifa.Items[PickerTarifa.SelectedIndex],
                 //City = PickerCity.Items[PickerCity.SelectedIndex],
                 //OneLineTitle = EntOneLineTitle.Text,
                 //First = EdtDescription.Text
