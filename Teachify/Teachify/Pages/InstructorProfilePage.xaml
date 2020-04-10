@@ -53,7 +53,7 @@
                 <Image Grid.Row="2" Grid.Column="0" Source="nationality.png"/>
                 <Image Grid.Row="3" Grid.Column="0" Source="experience.png"/>
                 <Image Grid.Row="4" Grid.Column="0" Source="specialization.png"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="City" TextColor="#030000"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="Name" TextColor="#030000"/>
                 <Label Grid.Row="1" Grid.Column="1" Text="Language" TextColor="#030000"/>
                 <Label Grid.Row="2" Grid.Column="1" Text="Nationality" TextColor="#030000"/>
                 <Label Grid.Row="3" Grid.Column="1" Text="Experience" TextColor="#030000"/>

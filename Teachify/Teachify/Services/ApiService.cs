@@ -68,13 +68,13 @@ namespace Teachify.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> BecomeAnInstructor(Instructor instructor)
+        public async Task<bool> BecomeAnInstructor(Trainers instructor)
         {
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(instructor);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.PostAsync("https://instructorsapi.azurewebsites.net/instructors", content);
+            var response = await httpClient.PostAsync("https://instructorsapi.azurewebsites.net/api/Students", content);
             return response.StatusCode == HttpStatusCode.Created;
         }
 
@@ -82,7 +82,7 @@ namespace Teachify.Services
         {
             var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.GetStringAsync("https://apihere.azurewebsites.net/api/Students");
+            var response = await httpClient.GetStringAsync("https://instructorsapi.azurewebsites.net//api/Students");
             return JsonConvert.DeserializeObject<List<Trainers>>(response);
         }
 
@@ -90,7 +90,7 @@ namespace Teachify.Services
         {
             var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.GetStringAsync("https://apihere.azurewebsites.net/api/Students/" + id);
+            var response = await httpClient.GetStringAsync("https://martialapptest.azurewebsites.net//api/Students/" + id);
             return JsonConvert.DeserializeObject<Trainers>(response);
         }
 

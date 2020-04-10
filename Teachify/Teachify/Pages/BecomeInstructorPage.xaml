@@ -14,11 +14,11 @@
                 <Entry Placeholder="Name" x:Name="EntName"/>
                 <Entry Placeholder="Language" x:Name="EntLanguage"/>
                 <Entry Placeholder="Nationality" x:Name="EntNationality"/>
-                <Picker x:Name="PickerGender" Title="Gender">
+                <Picker x:Name="PickerGender" Title="Belt">
                     <Picker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                        <x:String>Others</x:String>
+                        <x:String>White</x:String>
+                        <x:String>Blue</x:String>
+                        <x:String>Purple</x:String>
                     </Picker.Items>
                 </Picker>
                 <Entry Placeholder="Phone" x:Name="EntPhone"/>

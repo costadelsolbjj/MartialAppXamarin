@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MartialApp.Models;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Teachify.Helpers;
@@ -55,23 +56,24 @@ namespace Teachify.Pages
 
         private async void BtnApply_OnClicked(object sender, EventArgs e)
         {
-            var imageArray = FilesHelper.ReadFully(file.GetStream());
-            file.Dispose();
-            var instructor = new Instructor()
+            //var imageArray = FilesHelper.ReadFully(file.GetStream());
+            //file.Dispose();
+            var instructor = new Trainers()
             {
                 Name = EntName.Text,
-                Language = EntLanguage.Text,
-                Nationality = EntNationality.Text,
-                Gender = PickerGender.Items[PickerGender.SelectedIndex],
+                UserName = EntLanguage.Text,
+                LastName = EntNationality.Text,
+                //Gender = PickerGender.Items[PickerGender.SelectedIndex],
                 Phone = EntPhone.Text,
-                Email = EntEmail.Text,
-                Education = EntEducation.Text,
-                Experience = PickerExperience.Items[PickerExperience.SelectedIndex],
-                HourlyRate = PickerHourlyRate.Items[PickerHourlyRate.SelectedIndex],
-                CourseDomain = PickerCourseDomain.Items[PickerCourseDomain.SelectedIndex],
-                City = PickerCity.Items[PickerCity.SelectedIndex],
-                OneLineTitle = EntOneLineTitle.Text,
-                Description = EdtDescription.Text
+                Email = EntEmail.Text
+                //,
+                //Education = EntEducation.Text,
+                //Experience = PickerExperience.Items[PickerExperience.SelectedIndex],
+                //HourlyRate = PickerHourlyRate.Items[PickerHourlyRate.SelectedIndex],
+                //CourseDomain = PickerCourseDomain.Items[PickerCourseDomain.SelectedIndex],
+                //City = PickerCity.Items[PickerCity.SelectedIndex],
+                //OneLineTitle = EntOneLineTitle.Text,
+                //First = EdtDescription.Text
                 //,
                 //ImageArray = imageArray,
             };
