@@ -14,6 +14,16 @@ namespace Teachify.Services
 {
     public class ApiService
     {
+        private  HttpClient httpClient { get; }
+
+        public ApiService()
+        {
+            httpClient = new HttpClient
+            {
+                BaseAddress = new Uri($"{App.AzureBackendUrl}/")
+            };
+
+        }
         public async Task<bool> RegisterUser(string email, string password, string confirmPassword)
         {
             var registerModel = new RegisterModel()
@@ -22,7 +32,6 @@ namespace Teachify.Services
                 Password = password,
                 ConfirmPassword = confirmPassword
             };
-            var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(registerModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync("https://instructorsapi.azurewebsites.net/api/Account/Register", content);
@@ -31,7 +40,6 @@ namespace Teachify.Services
 
         public async Task<TokenResponse> GetToken(string email, string password)
         {
-            var httpClient = new HttpClient();
             var content = new StringContent($"grant_type=password&username={email}&password={password}", Encoding.UTF8, "application/x-www-form-urlencoded");
             var response = await httpClient.PostAsync("https://instructorsapi.azurewebsites.net//Token", content);
             var jsonResult = await response.Content.ReadAsStringAsync();
@@ -41,7 +49,6 @@ namespace Teachify.Services
 
         public async Task<bool> PasswordRecovery(string email)
         {
-            var httpClient = new HttpClient();
             var recoverPasswordModel = new PasswordRecoveryModel()
             {
                 Email = email
@@ -54,7 +61,6 @@ namespace Teachify.Services
 
         public async Task<bool> ChangePassword(string oldPassword, string newPassword, string confirmPassword)
         {
-            var httpClient = new HttpClient();
             var changePasswordModel = new ChangePasswordModel()
             {
                 OldPassword = oldPassword,
@@ -70,33 +76,29 @@ namespace Teachify.Services
 
         public async Task<bool> BecomeAnInstructor(Trainers instructor)
         {
-            var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(instructor);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.PostAsync("https://instructorsapi.azurewebsites.net/api/Students", content);
+            var response = await httpClient.PostAsync("api/Students", content);
             return response.StatusCode == HttpStatusCode.Created;
         }
 
         public async Task<List<Trainers>> GetInstructors()
         {
-            var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.GetStringAsync("https://instructorsapi.azurewebsites.net//api/Students");
+            var response = await httpClient.GetStringAsync("/api/Students");
             return JsonConvert.DeserializeObject<List<Trainers>>(response);
         }
 
         public async Task<Trainers> GetInstructor(int id)
         {
-            var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
-            var response = await httpClient.GetStringAsync("https://martialapptest.azurewebsites.net//api/Students/" + id);
+            var response = await httpClient.GetStringAsync("/api/Students/" + id);
             return JsonConvert.DeserializeObject<Trainers>(response);
         }
 
         public async Task<List<Instructor>> SearchInstructors(string subject, string gender, string city)
         {
-            var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", ""));
             var response = await httpClient.GetStringAsync("https://instructorsapi.azurewebsites.net/api/instructors?subject=" + subject + "&gender=" + gender + "&city=" + city);
             return JsonConvert.DeserializeObject<List<Instructor>>(response);
@@ -104,14 +106,12 @@ namespace Teachify.Services
 
         public async Task<List<City>> GetCities()
         {
-            var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("https://instructorsapi.azurewebsites.net/api/cities");
             return JsonConvert.DeserializeObject<List<City>>(response);
         }
 
         public async Task<List<Course>> GetCourses()
         {
-            var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("https://instructorsapi.azurewebsites.net/api/courses");
             return JsonConvert.DeserializeObject<List<Course>>(response);
         }

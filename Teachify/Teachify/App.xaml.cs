@@ -9,6 +9,10 @@ namespace Teachify
 {
     public partial class App : Application
     {
+        public static string AzureBackendUrl =
+
+            DeviceInfo.Platform == DevicePlatform.Android ? "http://192.168.1.141:45456/" : "http://localhost:5000";
+
         public App()
         {
             InitializeComponent();
